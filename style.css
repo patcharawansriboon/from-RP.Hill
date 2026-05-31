@@ -1,0 +1,551 @@
+/* RESET & COMMON STYLES (ค่าเริ่มต้นของทั้งระบบ) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Noto Sans Thai', sans-serif;
+}
+
+body {
+    background-color: #f9f9f7;
+    color: #333333;
+    min-height: 100vh;
+}
+
+/* LOGIN */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.brand-header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 0;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+    margin: auto 0;
+}
+
+.mailbox-icon {
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mailbox-icon img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   ERROR MESSAGE STYLES (ข้อความเตือนเลขห้อง)
+   ========================================================================== */
+.error-msg {
+    color: #FF3B30; /* สีแดงสากลสำหรับคำเตือน */
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 6px;
+    text-align: left;
+    animation: shake 0.2s ease-in-out; /* เพิ่มลูกเล่นสั่นเบาๆ ตอนแจ้งเตือน */
+}
+
+/* แอนิเมชันสั่นเบาๆ ให้ผู้ใช้รู้ตัว */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.login-page h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 30px;
+}
+
+.form-card {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.input-field {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e2e2;
+    border-radius: 14px;
+    font-size: 15px;
+    background-color: #fafafa;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: #99CC66;
+    background-color: #ffffff;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #99CC33;
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #CCFF00;
+    color: #333;
+}
+
+/* HOME */
+.home-page {
+    background-color: #ffffff;
+}
+
+/* background header */
+.header-section {
+    background-color: #6B8E23;
+    height: 220px;
+    width: 100%;
+    position: relative;
+    border-bottom-left-radius: 50% 30px;
+    border-bottom-right-radius: 50% 30px;
+    display: flex;
+    justify-content: center;
+}
+/* ลายตกแต่งพื้นหลัง */
+.shape {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 28px;
+    user-select: none;
+}
+.s1 { top: 40px; left: 15%; }
+.s2 { top: 120px; left: 8%; font-size: 36px; }
+.s3 { top: 50px; right: 12%; font-size: 32px; }
+.s4 { bottom: 60px; right: 18%; }
+
+/* BACK BOTTON */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* พื้นหลังขาวโปร่งแสง */
+    color: #ffffff; /* สีตัวอักษรขาว */
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 10; /* ดันให้อยู่เหนือชั้นของพวกรูปทรงเรขาคณิต (shape) */
+    backdrop-filter: blur(5px); /* เอฟเฟกต์เบลอพื้นหลังเพิ่มความพรีเมียม */
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ไปชี้ปุ่ม */
+.back-btn:hover {
+    background-color: #ffffff;
+    color: #6B8E23; /* เปลี่ยนเป็นสีเขียวมะกอกตามธีมของ Header */
+    transform: translateX(-3px); /* ขยับไปทางซ้ายเล็กน้อยให้ดูมีมิติการกด */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* โปรไฟล์วงกลม */
+.avatar-container {
+    position: absolute;
+    bottom: -60px;
+    width: 130px;
+    height: 130px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    border: 4px solid #DAA520;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* เลขห้อง */
+.profile-details {
+    margin-top: 80px;
+    text-align: center;
+    width: 100%;
+}
+
+.profile-details h2 {
+    font-size: 28px;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* บล็อกจัดระเบียบเนื้อหาพอร์ตให้อยู่โซนกลางหน้าจอ */
+.content-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Menu Tabs */
+.nav-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 25px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: #bbb;
+    font-size: 15px;
+    margin-right: 30px;
+    padding-bottom: 12px;
+    display: inline-block;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.tabs a.active {
+    color: #996600;
+    border-bottom: 3px solid #996600;
+}
+
+/* Grid */
+
+/* ==========================================================================
+   Grid & Card Layout (ปรับดีไซน์หน้า Bill ให้เหมือนหน้า Slip)
+   ========================================================================== */
+
+.grid-container {
+    display: flex;          
+    flex-direction: column; 
+    gap: 25px;              
+    padding-bottom: 40px;
+    width: 100%;
+}
+
+.card {
+    border-radius: 16px;            /* ปรับความโค้งมนให้เท่ากับหน้า slip */
+    width: 100%;            
+    height: auto;           
+    overflow: hidden;
+    padding: 20px;                  /* เพิ่มพื้นที่ด้านในเหมือนหน้า slip */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* สไตล์เมื่อเมาส์ชี้ (Hover) ใช้แบบเดียวกับหน้า Slip */
+.card:hover {
+    transform: scale(1.02);         /* ขยายขนาดขึ้นเล็กน้อยแทนการลอย */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* รูปภาพด้านในการ์ด (ทั้ง Bill และ Slip) */
+.card img {
+    width: 100%;
+    height: auto;           
+    object-fit: contain;
+    border-radius: 8px;             /* ปรับความโค้งมนของรูปให้เหมือนกัน */
+    cursor: pointer;        
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* เพิ่มเงานุ่มนวลใต้รูปภาพ */
+}
+
+.card img:hover {
+    opacity: 0.9;           
+}
+
+/* Bill */
+.bill-content {
+    background-color: #E0F2F1 !important; /* ใช้ !important เพื่อให้สีนี้ชนะสี .c1, .c2 เดิม */
+    border: 2px dashed #80CBC4;           /* เพิ่มเส้นขอบไข่ปลาให้ดูเหมือนตั๋ว/สลิป */
+    border-radius: 16px;                  /* ปรับความโค้งมนให้ต่างออกไปเล็กน้อย */
+    padding: 20px;          /* เส้นขอบไข่ปลาโทนส้มอ่อน */
+}
+
+.bill-content:hover {
+    transform: scale(1.02); /* ให้การ์ดสลิปขยายใหญ่ขึ้นแทนการลอยขึ้นข้างบน */
+    border-color: #004D40;                  /* เปลี่ยนสีเส้นขอบตอนเมาส์ชี้ในหน้า Bill */
+}
+
+.slip-content {
+    background-color: #E0F2F1 !important; 
+    border: 2px dashed #80CBC4;           
+}
+
+/* เอฟเฟกต์เฉพาะการเอาเมาส์ชี้สลิป */
+.slip-content:hover {
+    border-color: #004D40;   
+}
+
+/* Slip */
+
+/* เปลี่ยนสีพื้นหลัง Slip */
+.slip-content {
+    background-color: #E0F2F1 !important; /* ใช้ !important เพื่อให้สีนี้ชนะสี .c1, .c2 เดิม */
+    border: 2px dashed #80CBC4;           /* เพิ่มเส้นขอบไข่ปลาให้ดูเหมือนตั๋ว/สลิป */
+    border-radius: 16px;                  /* ปรับความโค้งมนให้ต่างออกไปเล็กน้อย */
+    padding: 20px;                        /* ปรับระยะห่างข้างในการ์ด */
+}
+
+/* ตกแต่งรูปภาพที่อยู่ด้านในหน้า Slip เท่านั้น */
+.slip-content img {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* เพิ่มเงาให้นุ่มนวลใต้สลิป */
+    filter: grayscale(10%);                    /* ตัวอย่าง: ปรับให้รูปสลิปติดสีเทานิดๆ ดูคลาสสิก (ลบออกได้) */
+}
+
+/* เอฟเฟกต์เฉพาะการเอาเมาส์ชี้สลิป */
+.slip-content:hover {
+    transform: scale(1.02); /* ให้การ์ดสลิปขยายใหญ่ขึ้นแทนการลอยขึ้นข้างบน */
+    border-color: #004D40;   /* เปลี่ยนสีเส้นขอบตอนเอาเมาส์ชี้ */
+}
+
+
+/* สไตล์สำหรับหน้าต่างป๊อปอัปรูปภาพใหญ่ (Full Screen Modal Viewer) */
+.modal-viewer {
+    display: none;          /* ซ่อนหน้าต่างไว้เป็นค่าเริ่มต้น */
+    position: fixed;
+    z-index: 9999;          /* แสดงผลอยู่ชั้นบนสุดเหนือเนื้อหาทั้งหมด */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* พื้นหลังดำโปร่งแสง 85% */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+    animation: zoomIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.15); /* เอฟเฟกต์เด้งรูปภาพขึ้นมา */
+}
+
+/* ปุ่มกากบาท (x) สำหรับปิด */
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.close-viewer:hover {
+    color: #FF9999;        /* เปลี่ยนสีเป็นสีเขียวเมื่อเอาเมาส์ไปชี้ */
+}
+
+/* SLIP UPLOAD */
+.slip-upload-container {
+    background-color: #ffffff !important;
+    border: 2px dashed #99CC33;
+    padding: 30px 20px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-form {
+    width: 100%;
+    text-align: center;
+}
+
+.upload-form h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* พื้นที่กล่องสำหรับคลิกเลือกรูป */
+.file-drop-area {
+    position: relative;
+    background-color: #fcfcfc;
+    border: 1.5px solid #e2e2e2;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-drop-area:hover {
+    border-color: #99CC33;
+    background-color: #f7fbe6;
+}
+
+.file-drop-area input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#file-name {
+    font-size: 14px;
+    color: #555;
+}
+
+/* สไตล์รูปพรีวิว (Preview) */
+#preview-container {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#imagePreview {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ปุ่มกดส่งสลิป */
+.btn-send-slip {
+    width: 100%;
+    padding: 14px;
+    background-color: #99CC33;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-send-slip:hover {
+    background-color: #6B8E23;
+    box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
+}
+
+/* แอนิเมชันตอนเปิดใช้งาน */
+@keyframes fadeIn {
+    from { background-color: rgba(0, 0, 0, 0); }
+    to { background-color: rgba(0, 0, 0, 0.85); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   BILL CARD TEXT STYLES (หัวข้อและการจัดเนื้อหาในกล่องบิล)
+   ========================================================================== */
+
+/* จัดโครงสร้างด้านในการ์ดให้เรียงจากบนลงล่าง */
+.card-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* จัดตัวหนังสือชิดซ้าย */
+    text-align: left;
+}
+
+/* หัวข้อบิล */
+.bill-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #4A3B18; /* สีน้ำตาลเข้มเข้ากับโทนเหลืองพาสเทล */
+    margin-bottom: 4px;
+}
+
+/* วันที่หรือรายละเอียดตัวเล็ก */
+.bill-date {
+    font-size: 13px;
+    color: #7A6A42;
+    margin-bottom: 15px; /* เว้นระยะห่างก่อนเริ่มรูปภาพ */
+}
+
+/* บล็อกครอบรูปภาพเพื่อคุมขนาดความโค้งมน */
+.bill-image-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ปรับพฤติกรรมการ hover ของรูปภาพที่อยู่ใน wrapper */
+.bill-image-wrapper img {
+    margin: 0; /* ล้างค่า margin */
+    display: block;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Home | RP.HILL</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="home-page">
+
+    <header class="header-section">
+        <a href="index.html" class="back-btn">❮ กลับ</a>
+        
+        <div class="shape s1">●</div>
+        <div class="shape s2">✖</div>
+        <div class="shape s3">◆</div>
+        <div class="shape s4">●</div>
+
+        <div class="avatar-container">
+            <img src="images/lolo.jpg" alt="Profile" class="avatar-img">
+        </div>
+    </header>
+
+    <section class="profile-details">
+        <h2>103</h2>
+    </section>
+
+    <div class="content-wrapper">
+        <nav class="nav-tabs">
+            <div class="tabs">
+                <a href="#" id="tab-bill" class="active">Bill</a>
+                <a href="#" id="tab-slip">Slip</a>
+            </div>
+        </nav>
+
+        <section class="grid-container">
+    <div class="card c1 bill-content">
+        <div class="card-body">
+            <h3 class="bill-title">บิลค่าน้ำ - ค่าไฟประจำเดือน</h3>
+            <p class="bill-date">ประจำวันที่: 25 พฤษภาคม 2026</p>
+            <div class="bill-image-wrapper">
+                <img src="images/บิล.jpg" alt="" class="image-trigger">
+            </div>
+        </div>
+    </div>
+
+    <div class="card c2 bill-content">
+        <div class="card-body">
+            <h3 class="bill-title">บิลค่าน้ำ - ค่าไฟประจำเดือน</h3>
+            <p class="bill-date">ประจำวันที่: 25 พฤษภาคม 2026</p>
+            <div class="bill-image-wrapper">
+                <img src="images/บิล.jpg" alt="" class="image-trigger">
+            </div>
+        </div>
+    </div>
+
+    <div class="card c3 bill-content">
+        <div class="card-body">
+            <h3 class="bill-title">บิลค่าน้ำ - ค่าไฟประจำเดือน</h3>
+            <p class="bill-date">ประจำวันที่: 25 พฤษภาคม 2026</p>
+            <div class="bill-image-wrapper">
+                <img src="images/บิล.jpg" alt="" class="image-trigger">
+            </div>
+        </div>
+    </div>
+
+    <div class="card c1 slip-content" style="display: none;"><img src="images/บัญชี.jpg" alt="" class="image-trigger"></div>
+    
+    <div class="card slip-upload-container slip-content" style="display: none;">
+        <form id="slipForm" class="upload-form">
+            <h3>แนบหลักฐานการโอนเงิน (Slip)</h3>
+            
+            <div class="file-drop-area">
+                <input type="file" id="slipInput" accept="image/*" required>
+                <div class="file-dummy">
+                    <span class="upload-icon">📷</span>
+                    <span class="success-icon" style="display: none;">แตะเพื่อเปลี่ยนรูป</span>
+                    <p id="file-name">คลิกหรือลากรูปภาพมาวางที่นี่</p>
+                </div>
+            </div>
+
+            <div id="preview-container" style="display: none;">
+                <img id="imagePreview" src="" alt="Preview">
+            </div>
+
+            <button type="submit" class="btn-send-slip">ส่งหลักฐานการโอนเงิน</button>
+        </form>
+    </div>
+</section>
+    </div>
+
+    <div id="imageViewer" class="modal-viewer">
+        <span class="close-viewer">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageViewer");
+        const modalImg = document.getElementById("fullImage");
+        const closeBtn = document.querySelector(".close-viewer");
+
+        document.querySelectorAll('.image-trigger').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "flex"; 
+                modalImg.src = this.src;      
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // สลับแท็บ Bill / Slip
+        const tabBill = document.getElementById("tab-bill");
+        const tabSlip = document.getElementById("tab-slip");
+        const billContents = document.querySelectorAll(".bill-content");
+        const slipContents = document.querySelectorAll(".slip-content");
+
+        // เมื่อคลิกแท็บ Bill
+        tabBill.addEventListener("click", function(e) {
+            e.preventDefault(); // ป้องกันหน้าต่างเด้งขึ้นไปบนสุด
+            
+            // เปลี่ยนสถานะปุ่ม Active
+            tabBill.classList.add("active");
+            tabSlip.classList.remove("active");
+            
+            // แสดงผลฝั่ง Bill และซ่อนฝั่ง Slip
+            billContents.forEach(item => item.style.display = "flex");
+            slipContents.forEach(item => item.style.display = "none");
+        });
+
+        // เมื่อคลิกแท็บ Slip
+        tabSlip.addEventListener("click", function(e) {
+            e.preventDefault();
+            
+            // เปลี่ยนสถานะปุ่ม Active
+            tabSlip.classList.add("active");
+            tabBill.classList.remove("active");
+            
+            // แสดงผลฝั่ง Slip และซ่อนฝั่ง Bill
+            slipContents.forEach(item => item.style.display = "flex");
+            billContents.forEach(item => item.style.display = "none");
+        });
+
+        // ==========================================
+        // ระบบอัปโหลดและแสดงรูปพรีวิว (Preview Slip)
+        // ==========================================
+        const slipInput = document.getElementById('slipInput');
+        const fileName = document.getElementById('file-name');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewContainer = document.getElementById('preview-container');
+        const uploadIcon = document.querySelector('.upload-icon');
+        const successIcon = document.querySelector('.success-icon');
+
+        slipInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                // แสดงชื่อไฟล์
+                fileName.textContent = file.name;
+                fileName.style.color = "#6B8E23";
+                
+                // สลับไอคอนสถานะ
+                uploadIcon.style.display = "none";
+                successIcon.style.display = "block";
+
+                // ดึงรูปมาทำ Preview
+                const reader = new FileReader();
+                reader.addEventListener('load', function() {
+                    imagePreview.setAttribute('src', this.result);
+                    previewContainer.style.display = "block";
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // เมื่อกดปุ่ม Submit ส่งฟอร์ม
+        document.getElementById('slipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // เขียนคำสั่งบันทึกหรือส่งไปหลังบ้านต่อตรงนี้ได้เลย 
+            // ตอนนี้ทำเป็น Alert แจ้งเตือนสเตตัสจำลองไว้ให้ก่อนครับ
+            alert('ส่งหลักฐานการโอนเงินสำเร็จแล้ว!');
+            
+            // รีเซ็ตฟอร์มหลังจากส่งสำเร็จ
+            this.reset();
+            previewContainer.style.display = "none";
+            fileName.textContent = "คลิกหรือลากรูปภาพมาวางที่นี่";
+            fileName.style.color = "#555";
+            uploadIcon.style.display = "block";
+            successIcon.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

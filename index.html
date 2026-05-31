@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP.HILL | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+
+    <header class="brand-header">
+        <div class="logo-box">
+            <img src="images/สน.png" alt="RP.HILL Logo" class="logo-image">
+            <span class="logo-text">RP.HILL</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="mailbox-icon">
+            <img src="images/สน.png" alt="Mailbox Icon" class="center-icon">
+        </div>
+
+        <form class="form-card" id="loginForm">
+            <div class="input-field">
+                <label for="room-number">เลขห้อง</label>
+                <div class="input-wrapper">
+                    <input type="text" id="room-number" placeholder="กรอกเลขห้องของคุณ" inputmode="numeric" pattern="[0-9]*" maxlength="3" required>
+                </div>
+                <p class="error-msg" id="room-alert" style="display: none;">* กรุณากรอกเฉพาะตัวเลขเท่านั้น</p>
+                <p class="error-msg" id="room-range-alert" style="display: none;">* เลขห้องไม่ถูกต้อง (กรอกได้เฉพาะห้องเลขที่ 01 - 10 ของแต่ละชั้นเท่านั้น)</p>
+            </div>
+
+            <div class="input-field">
+                <label for="password">รหัสผ่าน</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="••••••••" maxlength="8" required>
+                </div>
+                <p class="error-msg" id="password-alert" style="display: none;">* รหัสผ่านต้องมีความยาว 8 ตัวอักษรพอดี</p>
+            </div>
+
+            <button type="submit" class="btn-submit">Log in</button>
+        </form>
+    </main>
+
+    <script>
+        const roomInput = document.getElementById('room-number');
+        const roomAlert = document.getElementById('room-alert');
+        const roomRangeAlert = document.getElementById('room-range-alert');
+        
+        const passwordInput = document.getElementById('password');
+        const passwordAlert = document.getElementById('password-alert');
+
+        // 1. ตรวจจับเลขห้องระหว่างพิมพ์
+        roomInput.addEventListener('input', function() {
+            if (/[^0-9]/.test(this.value)) {
+                roomAlert.style.display = "block";
+            } else {
+                roomAlert.style.display = "none";
+            }
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            if (this.value.length === 3) {
+                validateRoom(this.value);
+            } else {
+                roomRangeAlert.style.display = "none"; 
+            }
+        });
+
+        // ฟังก์ชันสำหรับเช็กเงื่อนไขเลขห้อง
+        function validateRoom(value) {
+            const roomNum = parseInt(value, 10);
+            if (isNaN(roomNum)) return false;
+            const lastTwoDigits = roomNum % 100; 
+
+            if (roomNum >= 100 && roomNum <= 610 && lastTwoDigits >= 1 && lastTwoDigits <= 10) {
+                roomRangeAlert.style.display = "none";
+                return true; 
+            } else {
+                roomRangeAlert.style.display = "block";
+                return false; 
+            }
+        }
+
+        // 2. ตรวจจับการพิมพ์รหัสผ่าน (ถ้าพิมพ์ครบ 8 ตัวแล้วให้ซ่อนคำเตือนล่วงหน้า)
+        passwordInput.addEventListener('input', function() {
+            if (this.value.length === 8) {
+                passwordAlert.style.display = "none";
+            }
+        });
+
+        // 3. ตรวจสอบความถูกต้องขั้นสุดท้ายตอนกด Log in
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            // เช็กเลขห้อง
+            const isRoomValid = validateRoom(roomInput.value);
+            
+            // เช็ครหัสผ่านว่ามีความยาวเท่ากับ 8 ตัวพอดีหรือไม่
+            const isPasswordValid = passwordInput.value.length === 8;
+
+            if (!isPasswordValid) {
+                passwordAlert.style.display = "block"; // แสดงคำเตือนรหัสผ่าน
+                passwordInput.focus();
+            } else {
+                passwordAlert.style.display = "none";
+            }
+
+            // หากจุดใดจุดหนึ่งไม่ถูกต้อง ให้หยุดทำงานและไม่ให้ย้ายหน้า
+            if (!isRoomValid || !isPasswordValid) {
+                if (!isRoomValid) roomInput.focus();
+                return false; 
+            }
+
+            // ถ้าผ่านทุกเงื่อนไข ย้ายไปหน้าหลักทันที
+            window.location.href = "home.html"; 
+        });
+    </script>
+</body>
+</html>
